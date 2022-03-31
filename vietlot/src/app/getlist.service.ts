@@ -10,7 +10,7 @@ export class GetlistService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get<any>('http://127.0.0.1:3002/vietlot');
+    return this.http.get<any>('https://v1api.chikiet.com/vietlot');
   }
 
 }

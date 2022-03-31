@@ -1,95 +1,52 @@
-<div class="flex">
-<div class="grid grid-cols-3">
+<!-- <div class="flex">
+<div class="grid md:grid-cols-3 rid-cols-1">
   <table class="table-auto border-collapse border border-slate-500 m-2" *ngFor="let tutorial of tutorials ; let i = index">
     <tr>
       <td colspan="10">{{tutorial.Kyso}}</td>
     </tr>
     <tr *ngFor="let item of [0,1,2,3,4,5,6,7]">
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+1] == (item*10+1)">{{item*10+1}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+2] == (item*10+2)">{{item*10+2}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+3] == (item*10+3)">{{item*10+3}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+4] == (item*10+4)">{{item*10+4}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+5] == (item*10+5)">{{item*10+5}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+6] == (item*10+6)">{{item*10+6}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+7] == (item*10+7)">{{item*10+7}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+8] == (item*10+8)">{{item*10+8}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+9] == (item*10+9)">{{item*10+9}}</span></td>
-      <td class="border border-slate-600 w-20"><span *ngIf="tutorial.Ketqua[item*10+10] == (item*10+10)">{{item*10+10}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+1] == (item*10+1)">{{item*10+1}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+2] == (item*10+2)">{{item*10+2}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+3] == (item*10+3)">{{item*10+3}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+4] == (item*10+4)">{{item*10+4}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+5] == (item*10+5)">{{item*10+5}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+6] == (item*10+6)">{{item*10+6}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+7] == (item*10+7)">{{item*10+7}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+8] == (item*10+8)">{{item*10+8}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+9] == (item*10+9)">{{item*10+9}}</span></td>
+      <td class="border border-slate-600 w-20 h-10"><span *ngIf="tutorial.Ketqua[item*10+10] == (item*10+10)">{{item*10+10}}</span></td>
     </tr> 
-    <!-- <tbody>
-      <tr *ngFor="let tutorial of tutorials ; let i = index">
-        <td>{{tutorial.Kyso}}</td>
-        <td *ngFor="let item of tutorial.Ketqua; let j = index">{{item}}</td>
-      </tr>
-    </tbody> -->
-  </table>
-
-
-
-  <!-- <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Kỳ Số</th>
-        <th scope="col" *ngFor="let item of form">{{item}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let tutorial of tutorials ; let i = index">
-        <td>{{tutorial.Kyso}}</td>
-        <td *ngFor="let item of tutorial.Ketqua; let j = index">{{item}}</td>
-      </tr>
-    </tbody>
   </table> -->
-</div>
-</div>
-<!-- <div>
-  <th scope="col" *ngFor="let item of form">
-    {{item}}
-  </th>
-
-  <div *ngFor="let tutorial of tutorials ; let i = index">
-    <div>{{tutorial.Kyso}}</div>
-    <div *ngFor="let item of tutorial.Ketqua; let j = index">{{item}}</div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row}} </td>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+        <td mat-cell *matCellDef="let row"> {{row}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="3">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row}} </td>
+      </ng-container>
+  
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="fruit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
+        <td mat-cell *matCellDef="let row"> {{row}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
-
-</div> -->
-
-<!-- <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Kỳ</th>
-      <th scope="col">1</th>
-      <th scope="col">2</th>
-      <th scope="col">3</th>
-      <th scope="col">4</th>
-      <th scope="col">5</th>
-      <th scope="col">6</th>
-      <th scope="col">7</th>
-      <th scope="col">8</th>
-      <th scope="col">9</th>
-      <th scope="col">10</th>
-      <th scope="col">11</th>
-      <th scope="col">12</th>
-      <th scope="col">13</th>
-      <th scope="col">14</th>
-      <th scope="col">15</th>
-      <th scope="col">16</th>
-      <th scope="col">17</th>
-      <th scope="col">18</th>
-      <th scope="col">19</th>
-      <th scope="col">20</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let tutorial of tutorials ; let i = index">
-      <td>{{tutorial.Kyso}}</td>
-      <td *ngFor="let item of tutorial.Ketqua; let j = index">{{item}}</td>
-    </tr>
-  </tbody>
-</table> -->
-
-<!-- <div *ngFor="let tutorial of tutorials1 ; let i = index">
-  <span class="badge rounded-pill bg-primary me-2">{{tutorial.Kyso}}</span>
-  <span *ngFor="let item of tutorial.Ketqua; let j = index">{{item}}-</span>
-</div> -->
 <router-outlet></router-outlet>

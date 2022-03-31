@@ -4,17 +4,26 @@ var mysql = require('mysql');
 const { DATE, NEWDATE } = require("mysql/lib/protocol/constants/types");
 
 // var con = mysql.createConnection({
-//   host: "bv26-25052.azdigihost.com",
+//   host: "45.252.250.11",
 //   user: "owtrjssx_chikiet8",
 //   password: "@hikiet88",
-//   database: "owtrjssx_test"
+//   database: "owtrjssx_vietlot"
 // });
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "test"
+var con  = mysql.createPool({
+  connectionLimit : 10,
+  acquireTimeout  : 10000,
+  host: "45.252.250.11",
+  user: "owtrjssx_chikiet8",
+  password: "@hikiet88",
+  database: "owtrjssx_vietlot"
 });
+
+// var con = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "test"
+// });
 
 // con.connect(function(err) {
 //   if (err) throw err;
@@ -26,16 +35,23 @@ var con = mysql.createConnection({
 //     console.log("1 record inserted");
 //   });
 // });
-con.connect(function(err) {
-    if (err) throw err;
+// con.connect(function(err) {
+//     if (err) throw err;
     console.log("Connected!");
-
 (async () => {
+  var sql1 = "SELECT * FROM Vietlot ORDER BY id DESC LIMIT 1";
+  let i = 0;
+  await con.query(sql1, function (err, result) {
+    if (err) throw err;
+    console.log(Object.values(JSON.parse(JSON.stringify(result)))[0].Kyso);
+    x = Object.values(JSON.parse(JSON.stringify(result)))[0].Kyso;
+  });
  const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
-  let i = 85121;
-  let j = 85122
+  i =Number(x)+1;
+  let j = i+1
 //81320
+//await page.waitForTimeout(10000);
  for(;;)
  {
    if(i<j)
@@ -52,10 +68,10 @@ con.connect(function(err) {
             console.log(songs);
             if(songs.length>0)
             {
-              await page.waitForTimeout(1000);
+            //  await page.waitForTimeout(10000);
               let ketqua = JSON.stringify(songs);
               let Ngay = '2022-21-01';
-              var sql = `INSERT INTO vietlot (Kyso, Ketqua) VALUES (${i}, ${JSON.stringify(ketqua)})`;
+              var sql = `INSERT INTO Vietlot (Kyso, Ketqua) VALUES (${i}, ${JSON.stringify(ketqua)})`;
               await con.query(sql, function (err, result) {
                 if (err) throw err;
                 console.log(i+"record inserted");
@@ -64,10 +80,12 @@ con.connect(function(err) {
               j++
             }
           else console.log("Chua So");
-      //await page.waitForTimeout(20000);
+    // await page.waitForTimeout(10000);
   }
 }
-await page.waitForTimeout(1000);
+//await page.waitForTimeout(1000);
 //   }
  // await browser.close();
-})();  });
+})
+(); 
+//  });
