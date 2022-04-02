@@ -9,21 +9,21 @@ const { DATE, NEWDATE } = require("mysql/lib/protocol/constants/types");
 //   password: "@hikiet88",
 //   database: "owtrjssx_vietlot"
 // });
-var con  = mysql.createPool({
-  connectionLimit : 10,
-  acquireTimeout  : 10000,
-  host: "45.252.250.11",
-  user: "owtrjssx_chikiet8",
-  password: "@hikiet88",
-  database: "owtrjssx_vietlot"
-});
-
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "test"
+// var con  = mysql.createPool({
+//   connectionLimit : 10,
+//   acquireTimeout  : 10000,
+//   host: "45.252.250.11",
+//   user: "owtrjssx_chikiet8",
+//   password: "@hikiet88",
+//   database: "owtrjssx_vietlot"
 // });
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "test"
+});
 
 // con.connect(function(err) {
 //   if (err) throw err;
